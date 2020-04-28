@@ -13,20 +13,29 @@ import org.aspectj.lang.annotation.Aspect;
 @Component
 public class DataSourceAop {
 
-    @Pointcut("!@annotation(com.cjs.example.annotation.Master) " +
+/*    @Pointcut("!@annotation(com.cjs.example.annotation.Master) " +
             "&& (execution(* com.cjs.example.service..*.select*(..)) " +
-            "|| execution(* com.cjs.example.service..*.get*(..)))")
+            "|| execution(* com.cjs.example.service..*.get*(..)))")*/
+
+    @Pointcut("(execution(* com.kingmao.dynamic.*.service..*.select*(..)) " +
+            "|| execution(* com.kingmao.dynamic.*.service..*.get*(..)))")
     public void readPointcut() {
 
     }
 
-    @Pointcut("@annotation(com.cjs.example.annotation.Master) " +
+/*    @Pointcut("@annotation(com.cjs.example.annotation.Master) " +
             "|| execution(* com.cjs.example.service..*.insert*(..)) " +
             "|| execution(* com.cjs.example.service..*.add*(..)) " +
             "|| execution(* com.cjs.example.service..*.update*(..)) " +
             "|| execution(* com.cjs.example.service..*.edit*(..)) " +
             "|| execution(* com.cjs.example.service..*.delete*(..)) " +
-            "|| execution(* com.cjs.example.service..*.remove*(..))")
+            "|| execution(* com.cjs.example.service..*.remove*(..))")*/
+@Pointcut("execution(* com.kingmao.dynamic.*.service..*.insert*(..)) " +
+        "|| execution(* com.kingmao.dynamic.*.service..*.add*(..)) " +
+        "|| execution(* com.kingmao.dynamic.*.service..*.update*(..)) " +
+        "|| execution(* com.kingmao.dynamic.*.service..*.edit*(..)) " +
+        "|| execution(* com.kingmao.dynamic.*.service..*.delete*(..)) " +
+        "|| execution(* com.kingmao.dynamic.*.service..*.remove*(..))")
     public void writePointcut() {
 
     }

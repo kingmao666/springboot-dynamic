@@ -2,6 +2,8 @@ package com.kingmao.dynamic.apple.dao;
 
 import com.kingmao.dynamic.apple.entity.Apple;
 
+import java.util.List;
+
 public interface AppleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface AppleMapper {
     int updateByPrimaryKeySelective(Apple record);
 
     int updateByPrimaryKey(Apple record);
+
+    List<Apple> getAll();
 }

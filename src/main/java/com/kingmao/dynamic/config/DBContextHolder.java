@@ -1,5 +1,8 @@
 package com.kingmao.dynamic.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -7,6 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020/4/28
  */
 public class DBContextHolder {
+    private static final Logger logger = LoggerFactory.getLogger(DBContextHolder.class);
 
     private static final ThreadLocal<DBTypeEnum> contextHolder = new ThreadLocal<>();
 
@@ -22,7 +26,7 @@ public class DBContextHolder {
 
     public static void master() {
         set(DBTypeEnum.MASTER);
-        System.out.println("切换到master");
+        logger.info("切换到master");
     }
 
     public static void slave() {
@@ -33,10 +37,10 @@ public class DBContextHolder {
         }
         if (index == 0) {
             set(DBTypeEnum.SLAVE1);
-            System.out.println("切换到slave1");
+            logger.info("切换到slave1");
         }else {
             set(DBTypeEnum.SLAVE2);
-            System.out.println("切换到slave2");
+            logger.info("切换到slave2");
         }
     }
 }
