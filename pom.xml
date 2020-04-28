@@ -42,10 +42,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 引入AOP -->
+        <!--引入 AOP -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <!-- mysql -->
