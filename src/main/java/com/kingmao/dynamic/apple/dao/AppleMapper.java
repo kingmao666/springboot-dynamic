@@ -1,6 +1,7 @@
 package com.kingmao.dynamic.apple.dao;
 
 import com.kingmao.dynamic.apple.entity.Apple;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 

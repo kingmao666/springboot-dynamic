@@ -5,5 +5,5 @@ package com.kingmao.dynamic.config;
  * @date 2020/4/28
  */
 public enum DBTypeEnum {
-    MASTER, SLAVE1, SLAVE2;
+    MASTER_APPLE, MASTER_PEACH, SLAVE1_APPLE,SLAVE1_PEACH, SLAVE2_APPLE,SALVE2_PEACH;
 }

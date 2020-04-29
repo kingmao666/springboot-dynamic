@@ -17,34 +17,59 @@ import java.util.Map;
  */
 @Configuration
 public class DataSourceConfig {
+
     @Bean
-    @ConfigurationProperties("spring.datasource.master")
-    public DataSource masterDataSource() {
+    @ConfigurationProperties("spring.datasource.master.apple")
+    public DataSource masterAppleDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @ConfigurationProperties("spring.datasource.slave1")
-    public DataSource slave1DataSource() {
+    @ConfigurationProperties("spring.datasource.master.peach")
+    public DataSource masterPeachDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @ConfigurationProperties("spring.datasource.slave2")
-    public DataSource slave2DataSource() {
+    @ConfigurationProperties("spring.datasource.slave1.apple")
+    public DataSource slave1AppleDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    public DataSource myRoutingDataSource(@Qualifier("masterDataSource") DataSource masterDataSource,
-                                          @Qualifier("slave1DataSource") DataSource slave1DataSource,
-                                          @Qualifier("slave2DataSource") DataSource slave2DataSource) {
+    @ConfigurationProperties("spring.datasource.slave1.peach")
+    public DataSource slave1PeachDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    @ConfigurationProperties("spring.datasource.slave2.apple")
+    public DataSource slave2AppleDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    @ConfigurationProperties("spring.datasource.slave2.peach")
+    public DataSource slave2PeachDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    public DataSource myRoutingDataSource(@Qualifier("masterAppleDataSource") DataSource masterAppleDataSource,
+                                          @Qualifier("masterPeachDataSource") DataSource masterPeachDataSource,
+                                          @Qualifier("slave1AppleDataSource") DataSource slave1AppleDataSource,
+                                          @Qualifier("slave1PeachDataSource") DataSource slave1PeachDataSource,
+                                          @Qualifier("slave2AppleDataSource") DataSource slave2AppleDataSource,
+                                          @Qualifier("slave2PeachDataSource") DataSource slave2PeachDataSource) {
         Map<Object, Object> targetDataSources = new HashMap<>();
-        targetDataSources.put(DBTypeEnum.MASTER, masterDataSource);
-        targetDataSources.put(DBTypeEnum.SLAVE1, slave1DataSource);
-        targetDataSources.put(DBTypeEnum.SLAVE2, slave2DataSource);
+        targetDataSources.put(DBTypeEnum.MASTER_APPLE, masterAppleDataSource);
+        targetDataSources.put(DBTypeEnum.MASTER_PEACH, masterPeachDataSource);
+        targetDataSources.put(DBTypeEnum.SLAVE1_APPLE, slave1AppleDataSource);
+        targetDataSources.put(DBTypeEnum.SLAVE2_APPLE, slave2AppleDataSource);
+        targetDataSources.put(DBTypeEnum.SLAVE1_PEACH, slave1PeachDataSource);
+        targetDataSources.put(DBTypeEnum.SALVE2_PEACH, slave2PeachDataSource);
         MyRoutingDataSource myRoutingDataSource = new MyRoutingDataSource();
-        myRoutingDataSource.setDefaultTargetDataSource(masterDataSource);
+        myRoutingDataSource.setDefaultTargetDataSource(masterAppleDataSource);
         myRoutingDataSource.setTargetDataSources(targetDataSources);
         return myRoutingDataSource;
     }

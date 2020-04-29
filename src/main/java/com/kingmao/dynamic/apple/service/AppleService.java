@@ -6,11 +6,13 @@ import java.util.List;
 
 /**
  * @author QX
- * @date 2020/4/28
+ * @date 2020/4/29
  */
 public interface AppleService {
-
     List<Apple> getAll();
+
     Apple getById(Integer id);
-    int insert(Apple apple);
+
+    int save(Apple apple);
+
 }
