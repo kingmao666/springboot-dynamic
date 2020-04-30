@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,6 +22,11 @@ class SpringbootDynamicApplicationTests {
     @Autowired
     private PeachService peachService;
 
+    /**
+     * 查询操作只能查询从库
+     * 查询apple从slave1和salve2的dynamic_apple库中轮询查找
+     * 查询peach从slave1和salve2的dynamic_peach库中轮询查找
+     */
     @Test
     public void t1() {
         for (int x = 0;  x < 10;x++) {
@@ -32,6 +38,11 @@ class SpringbootDynamicApplicationTests {
         }
     }
 
+    /**
+     * 插入操作只能入主库
+     * apple入dynamic_apple库
+     * peach入dynamic_peach库
+     */
     @Test
     public void t2(){
         Apple apple = new Apple();
