@@ -23,3 +23,4 @@
 2.读取数据分库：
     读取apple表时，轮询从slave1下的dynamic_apple和slave2下的dynamic_apple库中读取。
     读取peach表时，轮询从slave1下的dynamic_peach和slave2下的dynamic_peach库中读取。
+    
